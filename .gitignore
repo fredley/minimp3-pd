@@ -6,3 +6,8 @@ minimp3_arm
 *.gcda
 *.gcno
 *.gcov
+
+app/build/
+app/*.pdx
+app/Source/pdex.dylib
+app/Source/pdex.elf

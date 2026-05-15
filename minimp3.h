@@ -1715,7 +1715,12 @@ int mp3dec_decode_frame(mp3dec_t *dec, const uint8_t *mp3, int mp3_bytes, mp3d_s
     int i = 0, igr, frame_size = 0, success = 1;
     const uint8_t *hdr;
     bs_t bs_frame[1];
-    mp3dec_scratch_t scratch;
+    // mp3dec_scratch_t is ~16 KB.
+    // On the Playdate device the main thread's effective stack budget is
+    // smaller than the makefile's STACK_SIZE suggests — leaving this on the
+    // stack causes a hard fault. We only ever invoke minimp3 from one thread
+    // (the update() loop), so static storage is safe.
+    static mp3dec_scratch_t scratch;
 
     if (mp3_bytes > 4 && dec->header[0] == 0xff && hdr_compare(dec->header, mp3))
     {
