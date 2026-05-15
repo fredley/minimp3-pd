@@ -1,0 +1,7 @@
+name=minimp3 demo
+author=Tom White
+description=Demos this repo's minimp3 by streaming BBC World Service on a Playdate.
+bundleID=net.mamota.minimp3demo
+version=0.1
+buildNumber=1
+imagePath=
